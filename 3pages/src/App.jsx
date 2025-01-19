@@ -2,7 +2,7 @@ import { useState } from 'react'
 import reactLogo from './assets/react.svg'
 import viteLogo from '/vite.svg'
 import './App.css'
-import {BrowserRouter, Routes, Route, Link} from 'react-router-dom'
+import {BrowserRouter, Routes, Route, Link, useParams} from 'react-router-dom'
 
 function App() {
   function Saina(){
@@ -21,15 +21,26 @@ function App() {
     )
   }
   
+  function Mohammad(){
+    const params = useParams();
+    return(
+      <h1>{params.id}</h1>
+    )
+  }
   return (
     <BrowserRouter>
+    <nav>
+      <Link to="/saina">Saina</Link>
+      <Link to="/pantea">Pantea</Link>
+      <Link to="/shahab">Shahab</Link>
+      <Link to="/mohammad">Mohammad</Link>
+    </nav>
+      
       <Routes>
-        <Link to="/saina">Saina</Link>
-        <Link to="/pantea">Pantea</Link>
-        <Link to="/shahab">Shahab</Link>
-        <Route path="/saina" element={Saina()}/>
-        <Route path="/pantea" element={Pantea()}/>
-        <Route path="/shahab" element={Shahab()}/>
+        <Route path="/saina" element={<Saina />}/>
+        <Route path="/pantea" element={<Pantea />}/>
+        <Route path="/shahab" element={<Shahab />}/>
+        <Route path="/mohammad/:id" element={<Mohammad />}/>
       </Routes>
     </BrowserRouter>
   )
